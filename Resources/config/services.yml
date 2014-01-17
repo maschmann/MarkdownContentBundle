@@ -1,0 +1,9 @@
+parameters:
+#    asm_markdown_content.example.class: Asm\MarkdownContentBundle\Example
+
+services:
+#    asm_markdown_content.example:
+#        class: %asm_markdown_content.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    asm_markdown_content.transform:
+        class: Asm\MardownContentBundle\Service\Transform
