@@ -8,17 +8,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Asm\MarkdownContentBundle\Controller;
+namespace Asm\MarkdownContentBundle\Hook;
 
 /**
- * Class ContentController
- * @package Asm\MarkdownContentBundle\Controller
+ * Interface HookInterface
+ *
+ * @package Asm\MarkdownContentBundle\Hook
  * @author marc aschmann <maschmann@gmail.com>
  */
-class ContentController
+interface HookInterface
 {
-    public function indexAction()
-    {
-
-    }
+    /**
+     * defines type of hook: pre, post or data
+     *
+     * @return string
+     */
+    public function getType();
 }

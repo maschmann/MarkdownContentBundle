@@ -1,10 +1,32 @@
 parameters:
 
 services:
+    # managers
     asm_markdown_content.parser_manager:
-        class: Asm\MardownContentBundle\Parser\ParserManager
+        class: 'Asm\MardownContentBundle\Parser\ParserManager'
 
-    asm_markdown_content.parsedown_parser
-        class: Asm\MarkdownContentBundle\Parser\ParsedownParser
+    asm_markdown_content.hook_manager:
+        class: 'Asm\MardownContentBundle\Hook\HookManager'
+
+    # dynamic router
+    asm_markdown_content.routes.loader:
+        class: 'Asm\MarkdownContentBundle\Router\MarkdownRoutesLoader'
+        tags:
+            - { name: routing.loader }
+
+    # predefined parser services
+    asm_markdown_content.parsedown_parser:
+        class: 'Asm\MarkdownContentBundle\Parser\ParsedownParser'
         tags:
             - { name: asm_markdown_content.parser, alias: parsedown }
+
+    asm_markdown_content.parsedown_parser:
+        class: 'Asm\MarkdownContentBundle\Parser\PhpMarkdownParser'
+        tags:
+            - { name: asm_markdown_content.parser, alias: php-markdown }
+
+    # predefined hooks
+        asm_markdown_content.metadata_content_hook:
+            class: 'Asm\MarkdownContentBundle\Hook\MetadataContentHook'
+            tags:
+                - { name: asm_markdown_content.hook, alias: metadata }
