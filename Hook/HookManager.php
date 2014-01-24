@@ -10,28 +10,31 @@
 
 namespace Asm\MarkdownContentBundle\Hook;
 
+use Asm\MarkdownContentBundle\Hook\HookManagerInterface;
+
 /**
  * Class HookLoader
  *
  * @package Asm\MarkdownContentBundle\Hook
  * @author marc aschmann <maschmann@gmail.com>
  */
-class HookManager
+class HookManager implements HookManagerInterface
 {
     /**
-     * classname of managed hook, implementing HookInterface
-     *
      * @var array
      */
     private $hooks;
-
 
     /**
      * default constructor
      */
     public function __construct()
     {
-        $this->hooks = array();
+        $this->hooks = array(
+            'pre'     => array(),
+            'content' => array(),
+            'post'    => array(),
+        );
     }
 
     /**
@@ -41,7 +44,7 @@ class HookManager
      */
     public function addHook(HookInterface $hook, $alias)
     {
-        $this->hooks[$alias] = $hook;
+        $this->hooks[$hook->getType()][$alias] = $hook;
     }
 
     /**
@@ -52,10 +55,12 @@ class HookManager
      */
     public function getHook($alias)
     {
-        if (array_key_exists($alias, $this->hooks)) {
-            return $this->hooks[$alias];
-        } else {
-            return false;
+        foreach ($this->hooks as $hooks) {
+            if (array_key_exists($alias, $hooks)) {
+                return $hooks[$alias];
+            } else {
+                return false;
+            }
         }
     }
 
@@ -67,5 +72,35 @@ class HookManager
     public function getHooks()
     {
         return $this->hooks;
+    }
+
+    /**
+     * return all pre hooks
+     *
+     * @return array
+     */
+    public function getPreHooks()
+    {
+        return $this->hooks['pre'];
+    }
+
+    /**
+     * return all content hooks
+     *
+     * @return array
+     */
+    public function getContentHooks()
+    {
+        return $this->hooks['content'];
+    }
+
+    /**
+     * return all post hooks
+     *
+     * @return array
+     */
+    public function getPostHooks()
+    {
+        return $this->hooks['post'];
     }
 }

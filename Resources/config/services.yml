@@ -1,6 +1,30 @@
 parameters:
+    asm_markdown_content.content_base_dir:   'app/Resources/content'
+    asm_markdown_content.content_path_depth: '3'
 
 services:
+    asm_markdown_content.content_provider:
+        class: 'Asm\MardownContentBundle\Content\ContentProvider'
+        arguments:
+            - '@asm_markdown_content.content_loader'
+            - '@asm_markdown_content.parser_manager'
+            - '@asm_markdown_content.hook_runner'
+
+    asm_markdown_content.content_loader:
+        class: 'Asm\MardownContentBundle\Content\ContentLoader'
+        arguments:
+            - %asm_markdown_content.content_base_dir%
+            - %asm_markdown_content.content_path_depth%
+
+    asm_markdown_content.content_provider:
+        class: 'Asm\MardownContentBundle\Content\ContentProvider'
+        arguments:
+            - '@asm_markdown_content.content_loader'
+
+    asm_markdown_content.hook_runner:
+        class: 'Asm\MardownContentBundle\Hook\HookRunner'
+        arguments: [ '@asm_markdown_content.hook_manager' ]
+
     # managers
     asm_markdown_content.parser_manager:
         class: 'Asm\MardownContentBundle\Parser\ParserManager'

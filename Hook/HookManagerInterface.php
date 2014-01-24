@@ -34,9 +34,30 @@ interface HookManagerInterface
     public function getHook($alias);
 
     /**
-     * return all collected hooks
+     * return all hooks from manager
      *
      * @return array
      */
     public function getHooks();
+
+    /**
+     * return all pre hooks
+     *
+     * @return array
+     */
+    public function getPreHooks();
+
+    /**
+     * return all post hooks
+     *
+     * @return array
+     */
+    public function getPostHooks();
+
+    /**
+     * return all content hooks
+     *
+     * @return array
+     */
+    public function getContentHooks();
 }
