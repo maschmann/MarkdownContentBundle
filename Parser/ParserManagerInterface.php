@@ -10,20 +10,33 @@
 
 namespace Asm\MarkdownContentBundle\Parser;
 
+use Asm\MarkdownContentBundle\Parser\ParserInterface;
+
 /**
  * Interface ParserManagerInterface
  *
  * @package Asm\MarkdownContentBundle\Parser
  * @author marc aschmann <maschmann@gmail.com>
+ * @uses Asm\MarkdownContentBundle\Parser\ParserInterface
  */
 interface ParserManagerInterface
 {
 
     /**
-     * get instance of configured parser
+     * set parser
      *
+     * @param ParserInterface $parser
+     * @param string $alias
      * @return mixed
      */
-    public function getParser();
+    public function addParser(ParserInterface $parser, $alias);
+
+    /**
+     * get instance of configured parser
+     *
+     * @param $alias
+     * @return mixed
+     */
+    public function getParser($alias);
 
 }

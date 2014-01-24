@@ -22,29 +22,43 @@ class ParserManager implements ParserManagerInterface
 {
 
     /**
-     * class
+     * classname of managed parser, implementing ParserInterface
      *
-     * @var ParserInterface $parser
+     * @var array
      */
-    static private $parser;
+    private $parsers;
 
 
     /**
-     * @param $parser
+     * default constructor
      */
-    public function __construct($parser)
+    public function __construct()
     {
-        self::$parser = new $parser;
+        $this->parsers = array();
+    }
+
+    /**
+     * @param ParserInterface $parser
+     * @param string $alias
+     * @return mixed|void
+     */
+    public function addParser(ParserInterface $parser, $alias)
+    {
+        $this->parsers[$alias] = $parser;
     }
 
     /**
      * get instance of configured parser
      *
+     * @param string $alias
      * @return mixed
      */
-    public function getParser()
+    public function getParser($alias)
     {
-
-        // TODO: Implement getParser() method.
+        if (array_key_exists($alias, $this->parsers)) {
+            return $this->parsers[$alias];
+        } else {
+            return false;
+        }
     }
 }

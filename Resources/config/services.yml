@@ -1,9 +1,10 @@
 parameters:
-#    asm_markdown_content.example.class: Asm\MarkdownContentBundle\Example
 
 services:
-#    asm_markdown_content.example:
-#        class: %asm_markdown_content.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
-    asm_markdown_content.transform:
-        class: Asm\MardownContentBundle\Service\Transform
+    asm_markdown_content.parser_manager:
+        class: Asm\MardownContentBundle\Parser\ParserManager
+
+    asm_markdown_content.parsedown_parser
+        class: Asm\MarkdownContentBundle\Parser\ParsedownParser
+        tags:
+            - { name: asm_markdown_content.parser, alias: parsedown }
