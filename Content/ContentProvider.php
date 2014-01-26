@@ -74,9 +74,7 @@ class ContentProvider
     public function getContent($uri)
     {
         $file = $this->resolveFilename($uri);
-
         $this->loadContent($file);
-
         $this->runHooks();
 
         return $this->content;

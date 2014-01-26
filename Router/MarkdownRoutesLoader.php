@@ -31,6 +31,19 @@ class MarkdownRoutesLoader implements LoaderInterface
     private $loaded = false;
 
     /**
+     * @var string
+     */
+    private $routePrefix;
+
+    /**
+     * @param string $routePrefix
+     */
+    public function __construct($routePrefix='')
+    {
+        $this->routePrefix = $routePrefix;
+    }
+
+    /**
      * Loads a resource.
      *
      * @param mixed $resource The resource
@@ -47,19 +60,25 @@ class MarkdownRoutesLoader implements LoaderInterface
         /** @var \Symfony\Component\Routing\RouteCollection $routes */
         $routes = new RouteCollection();
 
-        $routes->add(
-            'controller_name',
-            new Route(
-                'controller/route',
-                array(
-                    '_controller'   =>  'AsmMarkdownContentBundle:Content:index',
-                )
-            )
+        // prepare a new route
+        $pattern = $this->routePrefix . '/{page}.{_format}';
+        $defaults = array(
+            '_controller' => 'AsmMarkdownContentBundle:Content:index',
+            '_format'     => 'html'
         );
+        $requirements = array(
+            'page' => '.+',
+        );
+        $route = new Route($pattern, $defaults, $requirements);
+
+        // add the new route to the route collection:
+        $routeName = 'asm_markdown_content.content';
+        $routes->add($routeName, $route);
 
         $this->loaded = true;
 
         return $routes;
+
     }
 
     /**

@@ -2,17 +2,17 @@
 
 {% block language %}{{ language }}{% endblock %}
 {% block metadata %}
-    <meta charset="{{ meta.charset }}">
+    <meta charset="{{ data.charset }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ meta.description }}">
-    <meta name="author" content="{{ meta.author }}">
+    <meta name="description" content="{{ data.description }}">
+    <meta name="author" content="{{ data.author }}">
 {% endblock %}
 
 {% block head %}{% endblock %}
 
 {% block title %}
-    {{ meta.title }}
+    {{ data.title }}
 {% endblock %}
 
 {% block body %}

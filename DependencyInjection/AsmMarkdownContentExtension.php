@@ -32,5 +32,21 @@ class AsmMarkdownContentExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $defaults = array(
+            'content_directory'  => 'app/Resources/markdown',
+            'route_prefix'       => 'content',
+            'markdown_provider'  => 'php-markdown',
+            'content_path_depth' => 3,
+        );
+
+        foreach ($defaults as $key => $value) {
+            if (isset($config[$key])
+                & false === is_array($config[$key])) {
+                $value = $config[$key];
+            }
+
+            $container->setParameter('asm_markdown_content.' . $key, $value);
+        }
     }
 }

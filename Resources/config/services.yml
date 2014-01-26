@@ -1,6 +1,4 @@
 parameters:
-    asm_markdown_content.content_base_dir:   'app/Resources/content'
-    asm_markdown_content.content_path_depth: '3'
 
 services:
     # content loaders
@@ -34,6 +32,7 @@ services:
     # dynamic router
     asm_markdown_content.routes.loader:
         class: 'Asm\MarkdownContentBundle\Router\MarkdownRoutesLoader'
+        arguments: [ '%asm_markdown_content.route_prefix%' ]
         tags:
             - { name: routing.loader }
 

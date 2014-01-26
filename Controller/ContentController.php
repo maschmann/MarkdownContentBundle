@@ -10,16 +10,24 @@
 
 namespace Asm\MarkdownContentBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 /**
  * Class ContentController
  *
  * @package Asm\MarkdownContentBundle\Controller
  * @author marc aschmann <maschmann@gmail.com>
+ * @uses Symfony\Bundle\FrameworkBundle\Controller\Controller
  */
-class ContentController
+class ContentController extends Controller
 {
-    public function indexAction()
+    public function indexAction($page)
     {
-
+        return $this->render(
+            'AsmMarkdownContentBundle:Content:index.html.twig',
+            array(
+                'translations' => $translations,
+            )
+        );
     }
 }
