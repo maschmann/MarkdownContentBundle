@@ -39,7 +39,6 @@ class ContentProvider
      */
     private $hookRunner;
 
-
     /**
      * @var array
      */
