@@ -43,18 +43,56 @@ class HookRunner
         $this->hookManager = $hookManager;
     }
 
+
+    /**
+     * set loader loaded content
+     *
+     * @param array $content
+     * @return $this
+     */
+    public function setContent(array $content)
+    {
+        $this->content = $content['content'];
+        $this->data    = $content['data'];
+
+        return $this;
+    }
+
+
+    /**
+     * finished content
+     *
+     * @return array
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+
+    /**
+     * @return $this
+     */
     public function runPreHooks()
     {
-
+        return $this;
     }
 
+
+    /**
+     * @return $this
+     */
     public function runContentHooks()
     {
-
+        return $this;
     }
 
+
+    /**
+     * @return $this
+     */
     public function runPostHooks()
     {
-
+        return $this;
     }
 }

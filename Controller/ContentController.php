@@ -12,6 +12,7 @@ namespace Asm\MarkdownContentBundle\Controller;
 
 /**
  * Class ContentController
+ *
  * @package Asm\MarkdownContentBundle\Controller
  * @author marc aschmann <maschmann@gmail.com>
  */

@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Asm\MarkdownContentBundle\DependencyInjection\Compiler\ParserManagerCompilerPass;
 use Asm\MarkdownContentBundle\DependencyInjection\Compiler\DynamicRoutingCompilerPass;
+use Asm\MarkdownContentBundle\DependencyInjection\Compiler\ContentManagerCompilerPass;
 
 /**
  * Class AsmMarkdownContentBundle
@@ -24,6 +25,7 @@ use Asm\MarkdownContentBundle\DependencyInjection\Compiler\DynamicRoutingCompile
  * @uses Symfony\Component\DependencyInjection\ContainerBuilder
  * @uses Asm\MarkdownContentBundle\DependencyInjection\Compiler\ParserManagerCompilerPass
  * @uses Asm\MarkdownContentBundle\DependencyInjection\Compiler\DynamicRoutingCompilerPass
+ * @uses Asm\MarkdownContentBundle\DependencyInjection\Compiler\ContentManagerCompilerPass
  */
 class AsmMarkdownContentBundle extends Bundle
 {
@@ -31,12 +33,13 @@ class AsmMarkdownContentBundle extends Bundle
     /**
      * @param ContainerBuilder $container
      */
-    public function build(ContainerBuilder $container)
+    public function build( ContainerBuilder $container )
     {
-        parent::build($container);
+        parent::build( $container );
 
-        $container->addCompilerPass(new DynamicRoutingCompilerPass());
-        $container->addCompilerPass(new ParserManagerCompilerPass());
+        $container->addCompilerPass( new DynamicRoutingCompilerPass() );
+        $container->addCompilerPass( new ParserManagerCompilerPass() );
+        $container->addCompilerPass( new ContentManagerCompilerPass() );
     }
 
 }

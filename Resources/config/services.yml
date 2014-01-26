@@ -3,24 +3,20 @@ parameters:
     asm_markdown_content.content_path_depth: '3'
 
 services:
+    # content loaders
     asm_markdown_content.content_provider:
         class: 'Asm\MardownContentBundle\Content\ContentProvider'
         arguments:
-            - '@asm_markdown_content.content_loader'
+            - '@asm_markdown_content.content_manager'
             - '@asm_markdown_content.parser_manager'
             - '@asm_markdown_content.hook_runner'
 
-    asm_markdown_content.content_loader:
-        class: 'Asm\MardownContentBundle\Content\ContentLoader'
-        arguments:
-            - %asm_markdown_content.content_base_dir%
-            - %asm_markdown_content.content_path_depth%
+    asm_markdown_content.content_file_loader:
+        class: 'Asm\MardownContentBundle\Content\ContentFileLoader'
+        tags:
+            - { name: asm_markdown_content.content_loader, alias: file-loader }
 
-    asm_markdown_content.content_provider:
-        class: 'Asm\MardownContentBundle\Content\ContentProvider'
-        arguments:
-            - '@asm_markdown_content.content_loader'
-
+    # hook runner
     asm_markdown_content.hook_runner:
         class: 'Asm\MardownContentBundle\Hook\HookRunner'
         arguments: [ '@asm_markdown_content.hook_manager' ]
@@ -31,6 +27,9 @@ services:
 
     asm_markdown_content.hook_manager:
         class: 'Asm\MardownContentBundle\Hook\HookManager'
+
+    asm_markdown_content.content_manager:
+        class: 'Asm\MardownContentBundle\Content\ContentManager'
 
     # dynamic router
     asm_markdown_content.routes.loader:
