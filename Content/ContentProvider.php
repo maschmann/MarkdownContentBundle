@@ -44,6 +44,10 @@ class ContentProvider
      */
     private $content;
 
+    /**
+     * @var string
+     */
+    private $loader;
 
     /**
      * default constructor
@@ -73,8 +77,7 @@ class ContentProvider
      */
     public function getContent($uri)
     {
-        $file = $this->resolveFilename($uri);
-        $this->loadContent($file);
+        $this->loadContent($uri);
         $this->runHooks();
 
         return $this->content;
@@ -82,27 +85,20 @@ class ContentProvider
 
 
     /**
-     * @param string $uri
-     * @return string
+     * @param string$loader
      */
-    private function resolveFilename($uri)
+    public function setLoader($loader)
     {
-        $file = '';
-
-        if (!$file) {
-            // handle error here -> 404 page
-        } else {
-            return $file;
-        }
+        $this->loader = $loader;
     }
 
 
     /**
-     * @param string $file
+     * @param string $uri
      */
-    private function loadContent($file)
+    private function loadContent($uri)
     {
-        $content = '';
+        $content = $this->contentManager->getLoader($this->loader)->load($uri);
 
         if (!$content) {
             // handle error -> 404 page

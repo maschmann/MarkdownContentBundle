@@ -38,6 +38,7 @@ class AsmMarkdownContentExtension extends Extension
             'route_prefix'       => 'content',
             'markdown_provider'  => 'php-markdown',
             'content_path_depth' => 3,
+            'content_loader'     => 'file-loader',
         );
 
         foreach ($defaults as $key => $value) {

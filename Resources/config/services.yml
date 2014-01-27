@@ -3,31 +3,35 @@ parameters:
 services:
     # content loaders
     asm_markdown_content.content_provider:
-        class: 'Asm\MardownContentBundle\Content\ContentProvider'
+        class: 'Asm\MarkdownContentBundle\Content\ContentProvider'
+        calls:
+            - [ setLoader, ['%asm_markdown_content.content_loader%'] ]
         arguments:
             - '@asm_markdown_content.content_manager'
             - '@asm_markdown_content.parser_manager'
             - '@asm_markdown_content.hook_runner'
+            - '%asm_markdown_content.content_loader%'
 
     asm_markdown_content.content_file_loader:
-        class: 'Asm\MardownContentBundle\Content\ContentFileLoader'
+        class: 'Asm\MarkdownContentBundle\Content\ContentFileLoader'
+        arguments: ['%asm_markdown_content.content_directory%', '%asm_markdown_content.content_path_depth%']
         tags:
             - { name: asm_markdown_content.content_loader, alias: file-loader }
 
     # hook runner
     asm_markdown_content.hook_runner:
-        class: 'Asm\MardownContentBundle\Hook\HookRunner'
+        class: 'Asm\MarkdownContentBundle\Hook\HookRunner'
         arguments: [ '@asm_markdown_content.hook_manager' ]
 
     # managers
     asm_markdown_content.parser_manager:
-        class: 'Asm\MardownContentBundle\Parser\ParserManager'
+        class: 'Asm\MarkdownContentBundle\Parser\ParserManager'
 
     asm_markdown_content.hook_manager:
-        class: 'Asm\MardownContentBundle\Hook\HookManager'
+        class: 'Asm\MarkdownContentBundle\Hook\HookManager'
 
     asm_markdown_content.content_manager:
-        class: 'Asm\MardownContentBundle\Content\ContentManager'
+        class: 'Asm\MarkdownContentBundle\Content\ContentManager'
 
     # dynamic router
     asm_markdown_content.routes.loader:

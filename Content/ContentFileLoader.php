@@ -19,7 +19,7 @@ use Symfony\Component\Finder;
  * @author marc aschmann <maschmann@gmail.com>
  * @uses Symfony\Component\Finder
  */
-class ContentLoader implements ContentLoaderInterface
+class ContentFileLoader implements ContentLoaderInterface
 {
 
     /**
@@ -47,23 +47,58 @@ class ContentLoader implements ContentLoaderInterface
 
 
     /**
-     * set resource for loader
-     *
-     * @param $resource
-     * @return mixed
+     * @param string $uri
+     * @return mixed|void
      */
-    public function setResource( $resource )
+    public function load($uri)
     {
-        // TODO: Implement setResource() method.
+        return $this->getContent($uri);
     }
 
 
     /**
-     * @return mixed|void
+     * extract contents from file
+     *
+     * @param string $uri
+     * @return string
      */
-    public function load()
+    private function getContent($uri)
     {
-        $content = '';
-        return $content;
+        $searchStructure = $this->prepare($uri);
+
+        /** @var \Symfony\Component\Finder $finder */
+        $finder = new Finder();
+        $finder->depth($this->pathDepth);
+        foreach ($finder->files()->in($searchStructure['path'])->name($searchStructure['name']) as $file) {
+            return $file->getContents();
+        }
+
+        return '';
+    }
+
+
+    /**
+     * analyze request uri and prepare search params
+     *
+     * @param string $uri
+     * @return array
+     */
+    private function prepare($uri)
+    {
+        $path             = '';
+        $filename         = 'index.*';
+        $pagePathElements = explode('/', $uri);
+
+        if (count($pagePathElements) > 1) {
+            $filename = array_pop($pagePathElements);
+            $path     = '/' . implode('/', $pagePathElements);
+        } else {
+            $filename = $pagePathElements[0];
+        }
+
+        return array(
+            'filename' => str_replace('.html', '.*', $filename),
+            'path'     => $this->directory . $path,
+        );
     }
 }

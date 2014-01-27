@@ -23,8 +23,10 @@ class ContentController extends Controller
 {
     public function indexAction($page)
     {
-        //$provider = $this->get('asm_markdown_content.content_provider');
-        $content = array(
+        print_r($page);
+        $provider = $this->get('asm_markdown_content.content_provider');
+        $content = $provider->getContent($page);
+        /*$content = array(
             'data' => array(
                 'charset'     => 'utf-8',
                 'title'       => 'testing title',
@@ -32,7 +34,7 @@ class ContentController extends Controller
                 'author'      => 'marc aschmann',
             ),
             'content' => 'XxxXXXxxxxxXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxxXXXXXXXXXXXXXXXXXx',
-        );
+        );*/
 
         return $this->render(
             'AsmMarkdownContentBundle:Content:index.html.twig',
