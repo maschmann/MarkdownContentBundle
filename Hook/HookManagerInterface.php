@@ -53,11 +53,4 @@ interface HookManagerInterface
      * @return array
      */
     public function getPostHooks();
-
-    /**
-     * return all content hooks
-     *
-     * @return array
-     */
-    public function getContentHooks();
 }

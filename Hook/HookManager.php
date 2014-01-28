@@ -32,7 +32,6 @@ class HookManager implements HookManagerInterface
     {
         $this->hooks = array(
             'pre'     => array(),
-            'content' => array(),
             'post'    => array(),
         );
     }
@@ -82,16 +81,6 @@ class HookManager implements HookManagerInterface
     public function getPreHooks()
     {
         return $this->hooks['pre'];
-    }
-
-    /**
-     * return all content hooks
-     *
-     * @return array
-     */
-    public function getContentHooks()
-    {
-        return $this->hooks['content'];
     }
 
     /**

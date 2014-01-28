@@ -10,16 +10,16 @@
 /** @namespace Asm\MarkdownContentBundle\Hook */
 namespace Asm\MarkdownContentBundle\Hook;
 
-use Asm\MarkdownContentBundle\Hook\HookContentInterface;
+use Asm\MarkdownContentBundle\Hook\HookInterface;
 
 /**
  * Class MetadataContentHook
  *
  * @package Asm\MarkdownContentBundle\Content
  * @author marc aschmann <maschmann@gmail.com>
- * uses Asm\MarkdownContentBundle\Hook\HookContentInterface
+ * uses Asm\MarkdownContentBundle\Hook\HookInterface
  */
-class MetadataContentHook implements HookContentInterface
+class MetadataContentHook implements HookInterface
 {
     /**
      * main method of hook, changes content
@@ -29,8 +29,6 @@ class MetadataContentHook implements HookContentInterface
      */
     public function workContent($content)
     {
-        global $config;
-
         $headers = array(
             'title'       => 'Title',
             'description' => 'Description',
