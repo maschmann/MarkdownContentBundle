@@ -28,12 +28,7 @@ class HookRunner
     /**
      * @var string
      */
-    private $content = '';
-
-    /**
-     * @var array
-     */
-    private $data = array();
+    private $content = array();
 
     /**
      * @param HookManagerInterface $hookManager
@@ -52,8 +47,7 @@ class HookRunner
      */
     public function setContent(array $content)
     {
-        $this->content = $content['content'];
-        $this->data    = $content['data'];
+        $this->content = $content;
 
         return $this;
     }
@@ -75,15 +69,8 @@ class HookRunner
      */
     public function runPreHooks()
     {
-        return $this;
-    }
+        $this->runHooks($this->hookManager->getPreHooks());
 
-
-    /**
-     * @return $this
-     */
-    public function runContentHooks()
-    {
         return $this;
     }
 
@@ -93,6 +80,22 @@ class HookRunner
      */
     public function runPostHooks()
     {
+        $this->runHooks($this->hookManager->getPostHooks());
+
         return $this;
+    }
+
+
+    /**
+     * iterate hooks, call worker
+     *
+     * @param array $hooks
+     */
+    private function runHooks($hooks)
+    {
+        foreach ($hooks as $hook)
+        {
+           $this->content = $hook->workContent($this->content);
+        }
     }
 }

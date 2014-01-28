@@ -72,10 +72,7 @@ class ContentProvider
         $this->hookRunner    = $hookRunner;
 
         $this->content = array(
-            'data'    => array(
-                'title' => '',
-                'meta' => array(),
-            ),
+            'data'    => array(),
             'content' => '',
         );
     }
@@ -88,16 +85,24 @@ class ContentProvider
     public function getContent($uri)
     {
         $this->loadContent($uri);
-        $this->hookRunner->runPreHooks();
-        // convert content
-        $this->content['content'] = $this->parserManager
-            ->getParser($this->parser)
-            ->parseText($this->content['content']);
-        $this->hookRunner
-            ->runContentHooks()
-            ->runPostHooks();
+        // run pre hooks
+        $content = $this->hookRunner
+            ->setContent($this->content)
+            ->runPreHooks()
+            ->getContent();
 
-        return $this->content;
+        // convert content
+        $content['content'] = $this->parserManager
+            ->getParser($this->parser)
+            ->parseText($content['content']);
+
+        // run post hooks
+        $content = $this->hookRunner
+            ->setContent($content)
+            ->runPostHooks()
+            ->getContent();
+
+        return $content;
     }
 
 

@@ -2,16 +2,16 @@
 
 {% block language %}{{ language }}{% endblock %}
 {% block meta %}
-    <meta charset="{% if data.meta.charset is defined %}{{ data.meta.charset }}{% else %}utf-8{% endif %}">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% if data.meta.charset is defined %}{{ data.meta.description }}{% endif %}">
-    <meta name="author" content="{% if data.meta.charset is defined %}{{ data.meta.author }}utf-8{% endif %}">
+    <meta name="description" content="{{ data.meta.description }}">
+    <meta name="author" content="{{ data.meta.author }}">
 {% endblock %}
 {% block head %}{% endblock %}
 
 {% block title %}
-    {{ data.title }}
+    {{ data.meta.title }}
 {% endblock %}
 
 {% block body %}

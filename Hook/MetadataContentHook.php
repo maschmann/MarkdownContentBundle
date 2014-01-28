@@ -24,34 +24,19 @@ class MetadataContentHook implements HookInterface
     /**
      * main method of hook, changes content
      *
-     * @param string $content
-     * @return string
+     * @param array $content
+     * @return array
      */
     public function workContent($content)
     {
-        $headers = array(
-            'title'       => 'Title',
-            'description' => 'Description',
-            'author'      => 'Author',
-            'date'        => 'Date',
-            'robots'      => 'Robots',
-            'template'    => 'Template'
-        );
+        $headers = $this->extractHeaders($content['content']);
+        // merge header
+        $content['data'] = array_replace_recursive($content['data'], array('meta' => $headers));
 
-        // Add support for custom headers by hooking into the headers array
-        $this->run_hooks('before_read_file_meta', array(&$headers));
+        // clean out multiline comment from document header
+        $content['content'] = preg_replace('!/\*.*?\*/!s', '', $content['content']);
 
-        foreach ($headers as $field => $regex){
-            if (preg_match('/^[ \t\/*#@]*' . preg_quote($regex, '/') . ':(.*)$/mi', $content, $match) && $match[1]){
-                $headers[ $field ] = trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $match[1]));
-            } else {
-                $headers[ $field ] = '';
-            }
-        }
-
-        if(isset($headers['date'])) $headers['date_formatted'] = date($config['date_format'], strtotime($headers['date']));
-
-        return $headers;
+        return $content;
     }
 
     /**
@@ -64,4 +49,45 @@ class MetadataContentHook implements HookInterface
         return 'pre';
     }
 
+
+    /**
+     * extract header block from content
+     *
+     * @param string $content
+     * @return array
+     */
+    private function extractHeaders($content)
+    {
+        $headers = array(
+            'title'       => 'Title',
+            'description' => 'Description',
+            'author'      => 'Author',
+            'date'        => 'Date',
+            'robots'      => 'Robots',
+            'template'    => 'Template',
+        );
+
+        foreach ($headers as $field => $regex) {
+            if (preg_match(
+                    '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi',
+                    $content,
+                    $match
+                ) && $match[ 1 ]
+            ) {
+                $headers[ $field ] = trim
+                (
+                    preg_replace( "/\s*(?:\*\/|\?>).*/", '', $match[ 1 ] )
+                );
+            } else {
+                $headers[ $field ] = '';
+            }
+        }
+
+        if (isset( $headers[ 'date' ] )) {
+            $date = new \DateTime($headers[ 'date' ]);
+            $headers[ 'date_formatted' ] = $date->format('Y-m-d H:i:s');
+        }
+
+        return $headers;
+    }
 }
