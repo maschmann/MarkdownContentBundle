@@ -71,7 +71,32 @@ That's also the data structure you're needed to return from _workContent()_. Wha
 
 ### Templating
 The base layout uses bootstrap3 via CDN and provides some base for your own designs. Just override
+
     vendor/asm/markdown-content-bundle/Asm/MarkdownContentBundle/Resources/views/layout.html.twig
-in your own Bundle(s). Have a look at the used variable names!
+in your own Bundle(s). Have a look at the variable names!
 Content template:
+
     vendor/asm/markdown-content-bundle/Asm/MarkdownContentBundle/Resources/views/Content/index.html.twig
+
+### Meta data
+You can add metadata for the page with a simple one-liner comment within the markdown file. The comment will be stripped by the metadata content hook.
+Syntax:
+
+    /* Title: pagetitle Description: some cool description for your page content */
+    
+Available metadata fields:
+    
+    $headers = array(
+        'title'       => 'Title',
+        'description' => 'Description',
+        'author'      => 'Author',
+        'date'        => 'Date',
+        'robots'      => 'Robots',
+        'template'    => 'Template',
+    );
+
+## Upcoming/planned
+ * precaching for markdown file search on compiler pass
+ * caching of markdown content
+ * maybe more loader types
+ * online editor
