@@ -15,6 +15,7 @@ use Asm\MarkdownContentBundle\Hook\HookRunner;
 use Asm\MarkdownContentBundle\Parser\ParserManagerInterface;
 use Asm\MarkdownContentBundle\Content\ContentManagerInterface;
 
+
 /**
  * Class ContentManager
  *
@@ -50,6 +51,12 @@ class ContentProvider
     private $loader;
 
     /**
+     * @var string
+     */
+    private $parser;
+
+
+    /**
      * default constructor
      *
      * @param ContentManagerInterface $contentManager
@@ -65,7 +72,10 @@ class ContentProvider
         $this->hookRunner    = $hookRunner;
 
         $this->content = array(
-            'data'    => array(),
+            'data'    => array(
+                'title' => '',
+                'meta' => array(),
+            ),
             'content' => '',
         );
     }
@@ -78,13 +88,22 @@ class ContentProvider
     public function getContent($uri)
     {
         $this->loadContent($uri);
-        $this->runHooks();
+        $this->hookRunner->runPreHooks();
+        // convert content
+        $this->content['content'] = $this->parserManager
+            ->getParser($this->parser)
+            ->parseText($this->content['content']);
+        $this->hookRunner
+            ->runContentHooks()
+            ->runPostHooks();
 
         return $this->content;
     }
 
 
     /**
+     * set loader type for content
+     *
      * @param string$loader
      */
     public function setLoader($loader)
@@ -94,6 +113,19 @@ class ContentProvider
 
 
     /**
+     * set name of parser to use
+     *
+     * @param string $parser
+     */
+    public function setParser($parser)
+    {
+        $this->parser = $parser;
+    }
+
+
+    /**
+     * load content from provider
+     *
      * @param string $uri
      */
     private function loadContent($uri)
@@ -101,7 +133,7 @@ class ContentProvider
         $content = $this->contentManager->getLoader($this->loader)->load($uri);
 
         if (!$content) {
-            // handle error -> 404 page
+            // page not found 404
         } else {
             $this->content['content'] = $content;
         }

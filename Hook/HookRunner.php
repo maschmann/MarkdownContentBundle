@@ -10,7 +10,7 @@
 
 namespace Asm\MarkdownContentBundle\Hook;
 
-use Asm\MardownContentBundle\Hook\HookManagerInterface;
+use Asm\MarkdownContentBundle\Hook\HookManagerInterface;
 
 /**
  * Class HookRunner

@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 <html lang="{% block language %}en{% endblock %}">
 <head>
-    {% block metadata %}
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-    {% endblock %}
-
     <title>{% block title %}{% endblock %}</title>
-
+    {% block meta %}{% endblock %}
     {# Bootstrap core CSS #}
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 

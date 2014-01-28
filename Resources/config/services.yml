@@ -6,6 +6,7 @@ services:
         class: 'Asm\MarkdownContentBundle\Content\ContentProvider'
         calls:
             - [ setLoader, ['%asm_markdown_content.content_loader%'] ]
+            - [ setParser, ['%asm_markdown_content.markdown_provider%'] ]
         arguments:
             - '@asm_markdown_content.content_manager'
             - '@asm_markdown_content.parser_manager'
@@ -14,7 +15,10 @@ services:
 
     asm_markdown_content.content_file_loader:
         class: 'Asm\MarkdownContentBundle\Content\ContentFileLoader'
-        arguments: ['%asm_markdown_content.content_directory%', '%asm_markdown_content.content_path_depth%']
+        arguments:
+            - '%kernel.root_dir%'
+            - '%asm_markdown_content.content_directory%'
+            - '%asm_markdown_content.content_path_depth%'
         tags:
             - { name: asm_markdown_content.content_loader, alias: file-loader }
 

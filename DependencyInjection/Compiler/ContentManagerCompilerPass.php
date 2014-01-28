@@ -39,9 +39,15 @@ class ContentManagerCompilerPass  implements CompilerPassInterface
             'asm_markdown_content.content_loader'
         );
         foreach ($taggedServices as $id => $attributes) {
+            if (!isset($attributes[0]['alias'])) {
+                throw new \ErrorException('Please define an alias for ' . $id . ' service for mapping!');
+            }
             $definition->addMethodCall(
                 'addLoader',
-                array(new Reference($id))
+                array(
+                    new Reference($id),
+                    $attributes[0]['alias']
+                )
             );
         }
     }

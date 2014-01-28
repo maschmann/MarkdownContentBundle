@@ -10,7 +10,7 @@
 
 namespace Asm\MarkdownContentBundle\Content;
 
-use Symfony\Component\Finder;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Class ContentLoader
@@ -21,7 +21,6 @@ use Symfony\Component\Finder;
  */
 class ContentFileLoader implements ContentLoaderInterface
 {
-
     /**
      * @var string path to search in
      */
@@ -36,12 +35,13 @@ class ContentFileLoader implements ContentLoaderInterface
     /**
      * default constructor
      *
+     * @param string $rootDir
      * @param string $directory
      * @param string $pathDepth
      */
-    public function __construct($directory, $pathDepth)
+    public function __construct($rootDir, $directory, $pathDepth)
     {
-        $this->directory = $directory;
+        $this->directory = $rootDir . '/../' . $directory;
         $this->pathDepth = $pathDepth;
     }
 
@@ -65,15 +65,17 @@ class ContentFileLoader implements ContentLoaderInterface
     private function getContent($uri)
     {
         $searchStructure = $this->prepare($uri);
-
-        /** @var \Symfony\Component\Finder $finder */
+        /** @var \Symfony\Component\Finder\Finder $finder */
         $finder = new Finder();
-        $finder->depth($this->pathDepth);
-        foreach ($finder->files()->in($searchStructure['path'])->name($searchStructure['name']) as $file) {
-            return $file->getContents();
+        //$finder->depth($this->pathDepth);
+        $finder->name($searchStructure['filename']);
+
+        foreach ($finder->in($searchStructure['path']) as $file) {
+            $content = $file->getContents();
+            break;
         }
 
-        return '';
+        return $content;
     }
 
 
