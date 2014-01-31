@@ -50,7 +50,7 @@ services:
         tags:
             - { name: asm_markdown_content.parser, alias: parsedown }
 
-    asm_markdown_content.parsedown_parser:
+    asm_markdown_content.php_markdown_parser:
         class: 'Asm\MarkdownContentBundle\Parser\PhpMarkdownParser'
         tags:
             - { name: asm_markdown_content.parser, alias: php-markdown }
