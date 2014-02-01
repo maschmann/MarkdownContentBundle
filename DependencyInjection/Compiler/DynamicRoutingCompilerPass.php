@@ -14,6 +14,15 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * Class DynamicRoutingCompilerPass
+ *
+ * @package Asm\MarkdownContentBundle\DependencyInjection\Compiler
+ * @author marc aschmann <maschmann@gmail.com>
+ * @uses Symfony\Component\DependencyInjection\ContainerBuilder;
+ * @uses Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+ * @uses Symfony\Component\Yaml\Yaml;
+ */
 class DynamicRoutingCompilerPass implements CompilerPassInterface
 {
 

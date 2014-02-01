@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Reference;
  * @uses Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface
  * @uses Symfony\Component\DependencyInjection\Reference
  */
-class HookManagerCompilerPass  implements CompilerPassInterface
+class HookManagerCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
