@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
+/** namespace Asm\MarkdownContentBundle\Content */
 namespace Asm\MarkdownContentBundle\Content;
 
 
@@ -21,6 +21,9 @@ use Asm\MarkdownContentBundle\Content\ContentManagerInterface;
  *
  * @package Asm\MarkdownContentBundle\Content
  * @author marc aschmann <maschmann@gmail.com>
+ * @uses Asm\MarkdownContentBundle\Hook\HookRunner
+ * @uses Asm\MarkdownContentBundle\Parser\ParserManagerInterface
+ * @uses Asm\MarkdownContentBundle\Content\ContentManagerInterface
  */
 class ContentProvider
 {
@@ -68,8 +71,8 @@ class ContentProvider
         HookRunner $hookRunner
     ) {
         $this->contentManager = $contentManager;
-        $this->parserManager = $parserManager;
-        $this->hookRunner    = $hookRunner;
+        $this->parserManager  = $parserManager;
+        $this->hookRunner     = $hookRunner;
 
         $this->content = array(
             'data'    => array(),
