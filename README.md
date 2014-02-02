@@ -103,3 +103,11 @@ Available metadata fields:
  * caching of markdown content
  * maybe more loader types
  * online editor
+ 
+License
+----
+
+AsmMarkdownContentBundle is licensed under the MIT license. See the [LICENSE](Resources/meta/LICENSE) for the full license text.
+
+
+**Free Software, Hell Yeah!** 
