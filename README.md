@@ -20,10 +20,10 @@ Some things you need to know!
 You can set following things in your app/config.yml:
 
     asm_markdown_content:
-        content_directory # app/Resources/markdown
-        content_loader    # file-loader
-        route_prefix      # content
-        markdown_provider # php-markdown
+        content_directory: 'app/Resources/markdown' # app/Resources/markdown
+        content_loader:    'file-loader'            # file-loader
+        route_prefix:      'content'                # content
+        markdown_provider: 'php-markdown'           # php-markdown
 
 ### Expansion
 If you want, you can easily add new markdown parsers or content loaders, even hooks.
