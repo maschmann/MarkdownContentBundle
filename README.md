@@ -1,5 +1,8 @@
-# MarkdownContentBundle
+MarkdownContentBundle
+========
 Basic idea behind the project was to be able to easily provide, provision and version content without a database backend. Also quite tempting: The markdown syntax.
+
+[![Build Status](https://travis-ci.org/maschmann/MarkdownContentBundle.png?branch=master)](https://travis-ci.org/maschmann/MarkdownContentBundle) [![Latest Stable Version](https://poser.pugx.org/asm/markdown-content-bundle/v/stable.png)](https://packagist.org/packages/asm/markdown-content-bundle) [![Total Downloads](https://poser.pugx.org/asm/markdown-content-bundle/downloads.png)](https://packagist.org/packages/asm/markdown-content-bundle)
 
 ## What does it do?
 You can configure following things:
@@ -83,9 +86,9 @@ You can add metadata for the page with a simple one-liner comment within the mar
 Syntax:
 
     /* Title: pagetitle Description: some cool description for your page content */
-    
+
 Available metadata fields:
-    
+
     $headers = array(
         'title'       => 'Title',
         'description' => 'Description',
