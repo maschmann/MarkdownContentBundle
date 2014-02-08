@@ -10,7 +10,7 @@ services:
         arguments:
             - '@asm_markdown_content.content_manager'
             - '@asm_markdown_content.parser_manager'
-            - '%asm_markdown_content.content_loader%'
+            - '@event_dispatcher'
 
     asm_markdown_content.content_file_loader:
         class: 'Asm\MarkdownContentBundle\Content\ContentFileLoader'

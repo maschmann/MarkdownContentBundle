@@ -14,9 +14,9 @@ namespace Asm\MarkdownContentBundle\Content;
 use Asm\MarkdownContentBundle\Hook\HookRunner;
 use Asm\MarkdownContentBundle\Parser\ParserManagerInterface;
 use Asm\MarkdownContentBundle\Content\ContentManagerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Asm\MarkdownContentBundle\Event\PreParseHookEvent;
 use Asm\MarkdownContentBundle\Event\PostParseHookEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 
 /**
@@ -27,6 +27,9 @@ use Asm\MarkdownContentBundle\Event\PostParseHookEvent;
  * @uses Asm\MarkdownContentBundle\Hook\HookRunner
  * @uses Asm\MarkdownContentBundle\Parser\ParserManagerInterface
  * @uses Asm\MarkdownContentBundle\Content\ContentManagerInterface
+ * @uses Asm\MarkdownContentBundle\Event\PreParseHookEvent
+ * @uses Asm\MarkdownContentBundle\Event\PostParseHookEvent
+ * @uses Symfony\Component\EventDispatcher\EventDispatcherInterface
  */
 class ContentProvider
 {
@@ -62,12 +65,12 @@ class ContentProvider
      *
      * @param ContentManagerInterface $contentManager
      * @param ParserManagerInterface $parserManager
-     * @param EventDispatcher $eventDispatcher
+     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         ContentManagerInterface $contentManager,
         ParserManagerInterface $parserManager,
-        EventDispatcher $eventDispatcher
+        EventDispatcherInterface $eventDispatcher
     ) {
         $this->contentManager  = $contentManager;
         $this->parserManager   = $parserManager;
@@ -81,12 +84,7 @@ class ContentProvider
      */
     public function getContent($uri)
     {
-        $content = array(
-            'data'    => array(),
-            'content' => '',
-        );
-
-        $this->loadContent($uri);
+        $content = $this->loadContent($uri);
         // run pre hooks
         $event = $this->eventDispatcher
             ->dispatch(
@@ -138,15 +136,22 @@ class ContentProvider
      * load content from provider
      *
      * @param string $uri
+     * @return array
      */
     private function loadContent($uri)
     {
-        $content = $this->contentManager->getLoader($this->loader)->load($uri);
+        $content = array(
+            'data'    => array(),
+            'content' => '',
+        );
+        $html = $this->contentManager->getLoader($this->loader)->load($uri);
 
-        if (!$content) {
+        if (!$html) {
             // page not found 404
         } else {
-            $this->content['content'] = $content;
+            $content['content'] = $html;
         }
+
+        return $content;
     }
 }
