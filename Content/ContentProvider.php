@@ -14,6 +14,9 @@ namespace Asm\MarkdownContentBundle\Content;
 use Asm\MarkdownContentBundle\Hook\HookRunner;
 use Asm\MarkdownContentBundle\Parser\ParserManagerInterface;
 use Asm\MarkdownContentBundle\Content\ContentManagerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Asm\MarkdownContentBundle\Event\PreParseHookEvent;
+use Asm\MarkdownContentBundle\Event\PostParseHookEvent;
 
 
 /**
@@ -39,14 +42,9 @@ class ContentProvider
     private $parserManager;
 
     /**
-     * @var \Asm\MarkdownContentBundle\Hook\HookRunner
+     * @var \Symfony\Component\EventDispatcher\EventDispatcher
      */
-    private $hookRunner;
-
-    /**
-     * @var array
-     */
-    private $content;
+    private $eventDispatcher;
 
     /**
      * @var string
@@ -64,20 +62,16 @@ class ContentProvider
      *
      * @param ContentManagerInterface $contentManager
      * @param ParserManagerInterface $parserManager
-     * @param HookRunner $hookRunner
+     * @param EventDispatcher $eventDispatcher
      */
-    public function __construct(ContentManagerInterface $contentManager,
+    public function __construct(
+        ContentManagerInterface $contentManager,
         ParserManagerInterface $parserManager,
-        HookRunner $hookRunner
+        EventDispatcher $eventDispatcher
     ) {
-        $this->contentManager = $contentManager;
-        $this->parserManager  = $parserManager;
-        $this->hookRunner     = $hookRunner;
-
-        $this->content = array(
-            'data'    => array(),
-            'content' => '',
-        );
+        $this->contentManager  = $contentManager;
+        $this->parserManager   = $parserManager;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
 
@@ -87,12 +81,20 @@ class ContentProvider
      */
     public function getContent($uri)
     {
+        $content = array(
+            'data'    => array(),
+            'content' => '',
+        );
+
         $this->loadContent($uri);
         // run pre hooks
-        $content = $this->hookRunner
-            ->setContent($this->content)
-            ->runPreHooks()
-            ->getContent();
+        $event = $this->eventDispatcher
+            ->dispatch(
+                'asm_markdown_content.hook.pre_parse',
+                new PreParseHookEvent($content)
+            );
+
+        $content = $event->getContent();
 
         // convert content
         $content['content'] = $this->parserManager
@@ -100,12 +102,13 @@ class ContentProvider
             ->parseText($content['content']);
 
         // run post hooks
-        $content = $this->hookRunner
-            ->setContent($content)
-            ->runPostHooks()
-            ->getContent();
+        $event = $this->eventDispatcher
+            ->dispatch(
+                'asm_markdown_content.hook.post_parse',
+                new PostParseHookEvent($content)
+            );
 
-        return $content;
+        return $event->getContent();
     }
 
 
@@ -145,20 +148,5 @@ class ContentProvider
         } else {
             $this->content['content'] = $content;
         }
-    }
-
-
-    /**
-     * do pre/post processing
-     */
-    private function runHooks()
-    {
-        $this->hookRunner
-            ->setContent($this->content)
-            ->runPreHooks()
-            ->runContentHooks()
-            ->runPostHooks();
-
-        $this->content = $this->hookRunner->getContent();
     }
 }

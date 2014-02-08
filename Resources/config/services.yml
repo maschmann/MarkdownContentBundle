@@ -10,7 +10,6 @@ services:
         arguments:
             - '@asm_markdown_content.content_manager'
             - '@asm_markdown_content.parser_manager'
-            - '@asm_markdown_content.hook_runner'
             - '%asm_markdown_content.content_loader%'
 
     asm_markdown_content.content_file_loader:
@@ -22,10 +21,13 @@ services:
         tags:
             - { name: asm_markdown_content.content_loader, alias: file-loader }
 
-    # hook runner
-    asm_markdown_content.hook_runner:
-        class: 'Asm\MarkdownContentBundle\Hook\HookRunner'
+    # hooks
+    asm_markdown_content.listener.hook:
+        class: Asm\MarkdownContentBundle\EventListener\HookListener
         arguments: [ '@asm_markdown_content.hook_manager' ]
+        tags:
+            - { name: kernel.event_listener, event: asm_markdown_content.hook.pre_parse, method: onPreParseHook }
+            - { name: kernel.event_listener, event: asm_markdown_content.hook.post_parse, method: onPostParseHook }
 
     # managers
     asm_markdown_content.parser_manager:
