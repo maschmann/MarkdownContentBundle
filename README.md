@@ -12,6 +12,7 @@ You can configure following things:
  * And the prefix for your content routes
 
 All URLs are dynamically generated and support subdirectories without limitations.
+MarkdowncontentBundle also supports translations! If you put your directory structure into a locale directory like ```content/en_US/mycoolfile.md``` it will be loaded either when using w3c urls with locale or if locale is set in your kernel. If you want locale urls, please enable the config directive.
 
 ## Basics
 Some things you need to know!
@@ -20,10 +21,11 @@ Some things you need to know!
 You can set following things in your app/config.yml:
 
     asm_markdown_content:
-        content_directory: 'app/Resources/markdown' # app/Resources/markdown
-        content_loader:    'file-loader'            # file-loader
-        route_prefix:      'content'                # content
-        markdown_provider: 'php-markdown'           # php-markdown
+        content_directory: 'app/Resources/markdown'
+        content_loader:    'file-loader'
+        route_prefix:      'content'
+        markdown_provider: 'php-markdown'
+        locale_url:        false
 
 ### Expansion
 If you want, you can easily add new markdown parsers or content loaders, even hooks.

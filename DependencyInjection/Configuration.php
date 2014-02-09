@@ -38,10 +38,6 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('file-loader')
                     ->info('How the content is provided.')
                 ->end()
-                ->scalarNode('content_path_depth')
-                    ->info('How deep is the folder tree structure.')
-                    ->defaultValue(3)
-                ->end()
                 ->scalarNode('route_prefix')
                     ->info('Prefix for the content routes, default is "content".')
                     ->defaultValue('content')
@@ -49,6 +45,10 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('markdown_provider')
                     ->defaultValue('php-markdown')
                     ->info('Provider which to call for mardown to HTML conversion.')
+                ->end()
+                ->booleanNode('locale_url')
+                    ->defaultValue(false)
+                    ->info('Enable useage of locale in URLs.')
                 ->end()
             ->end();
 

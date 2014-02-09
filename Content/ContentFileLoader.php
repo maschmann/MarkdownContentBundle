@@ -27,22 +27,14 @@ class ContentFileLoader implements ContentLoaderInterface
     private $directory;
 
     /**
-     * @var integer path depth for search
-     */
-    private $pathDepth;
-
-
-    /**
      * default constructor
      *
      * @param string $rootDir
      * @param string $directory
-     * @param string $pathDepth
      */
-    public function __construct($rootDir, $directory, $pathDepth)
+    public function __construct($rootDir, $directory)
     {
         $this->directory = $rootDir . '/../' . $directory;
-        $this->pathDepth = $pathDepth;
     }
 
 

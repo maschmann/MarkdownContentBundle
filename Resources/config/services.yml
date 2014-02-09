@@ -17,7 +17,6 @@ services:
         arguments:
             - '%kernel.root_dir%'
             - '%asm_markdown_content.content_directory%'
-            - '%asm_markdown_content.content_path_depth%'
         tags:
             - { name: asm_markdown_content.content_loader, alias: file-loader }
 
