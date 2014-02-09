@@ -67,11 +67,10 @@ class ContentFileLoader implements ContentLoaderInterface
         $searchStructure = $this->prepare($uri);
         /** @var \Symfony\Component\Finder\Finder $finder */
         $finder = new Finder();
-        //$finder->depth($this->pathDepth);
         $finder->name($searchStructure['filename']);
 
         foreach ($finder->in($searchStructure['path']) as $file) {
-            $content = $file->getContents();
+            $content = file($file->getPathName());
             break;
         }
 

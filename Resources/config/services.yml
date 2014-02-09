@@ -58,7 +58,7 @@ services:
             - { name: asm_markdown_content.parser, alias: php-markdown }
 
     # predefined hooks
-    asm_markdown_content.metadata_content_hook:
-        class: 'Asm\MarkdownContentBundle\Hook\MetadataContentHook'
+    asm_markdown_content.front_matter_content_hook:
+        class: 'Asm\MarkdownContentBundle\Hook\FrontMatterContentHook'
         tags:
-            - { name: asm_markdown_content.hook, alias: metadata }
+            - { name: asm_markdown_content.hook, alias: front_matter }

@@ -97,7 +97,7 @@ class ContentProvider
         // convert content
         $content['content'] = $this->parserManager
             ->getParser($this->parser)
-            ->parseText($content['content']);
+            ->parseText(implode('', $content['content']));
 
         // run post hooks
         $event = $this->eventDispatcher
@@ -144,12 +144,12 @@ class ContentProvider
             'data'    => array(),
             'content' => '',
         );
-        $html = $this->contentManager->getLoader($this->loader)->load($uri);
+        $data = $this->contentManager->getLoader($this->loader)->load($uri);
 
-        if (!$html) {
+        if (empty($data)) {
             // page not found 404
         } else {
-            $content['content'] = $html;
+            $content['content'] = $data;
         }
 
         return $content;
