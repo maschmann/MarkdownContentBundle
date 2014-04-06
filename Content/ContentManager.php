@@ -38,6 +38,8 @@ class ContentManager implements ContentManagerInterface
     public function addLoader( ContentLoaderInterface $loader, $alias )
     {
         $this->loaders[$alias] = $loader;
+
+        return $this;
     }
 
 

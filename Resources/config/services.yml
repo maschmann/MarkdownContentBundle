@@ -20,6 +20,11 @@ services:
         tags:
             - { name: asm_markdown_content.content_loader, alias: file-loader }
 
+    asm_markdown_content.content_static_file_loader:
+        class: 'Asm\MarkdownContentBundle\Content\ContentStaticFileLoader'
+        tags:
+            - { name: asm_markdown_content.content_loader, alias: static-loader }
+
     # hooks
     asm_markdown_content.listener.hook:
         class: Asm\MarkdownContentBundle\EventListener\HookListener

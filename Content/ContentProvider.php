@@ -95,9 +95,12 @@ class ContentProvider
         $content = $event->getContent();
 
         // convert content
+        if (is_array($content['content'])) {
+            $content['content'] = implode('', $content['content']);
+        }
         $content['content'] = $this->parserManager
             ->getParser($this->parser)
-            ->parseText(implode('', $content['content']));
+            ->parseText($content['content']);
 
         // run post hooks
         $event = $this->eventDispatcher
@@ -118,6 +121,8 @@ class ContentProvider
     public function setLoader($loader)
     {
         $this->loader = $loader;
+
+        return $this;
     }
 
 
@@ -129,6 +134,8 @@ class ContentProvider
     public function setParser($parser)
     {
         $this->parser = $parser;
+
+        return $this;
     }
 
 

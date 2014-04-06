@@ -25,7 +25,7 @@ You can set following things in your app/config.yml:
         content_loader:    'file-loader'
         route_prefix:      'content'
         markdown_provider: 'php-markdown'
-        locale_url:        false
+        #locale_url:        false
 
 ### Expansion
 If you want, you can easily add new markdown parsers or content loaders, even hooks.
@@ -129,6 +129,15 @@ The front matter block from above will result in this array:
     );
 
 The data array is available in your TWIG template and fill the fields automatically ;-)
+
+## Exporting of static pages
+If you want to export all your markdown files as HTML, you can do so with following command:
+
+    app/console asm:markdown:export <absolute_export_dir> -i <optional_import_dir>
+
+The exporter will use the configured markdown parser and if no import directory is provided, the configured one will be used by default.
+Your content is then rendered file by file into an equivalent folder stucture within the export directory, based on the provided templates.
+Keep in mind to add any css/js files to your static content directory :-)
 
 ## Upcoming/planned
  * precaching for markdown file search on compiler pass
