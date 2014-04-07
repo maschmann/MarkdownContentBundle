@@ -16,7 +16,9 @@
 {% endblock %}
 
 {% block body %}
+    {% spaceless %}
     <div class="container">
         {{ content|raw }}
     </div>
+    {% endspaceless %}
 {% endblock %}
