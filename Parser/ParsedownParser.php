@@ -61,5 +61,4 @@ class ParsedownParser extends ParserAbstract implements ParserInterface
             $this->parser->set_breaks_enabled($options['breaks_enabled']);
         }
     }
-
 }

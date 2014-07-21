@@ -65,18 +65,10 @@ class MetadataContentHook implements HookInterface
         );
 
         foreach ($headers as $field => $regex) {
-            if (preg_match(
-                    '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi',
-                    $content,
-                    $match
-                ) && $match[ 1 ]
-            ) {
-                $headers[ $field ] = trim
-                (
-                    preg_replace( "/\s*(?:\*\/|\?>).*/", '', $match[ 1 ] )
-                );
+            if (preg_match('/^[ \t\/*#@]*' . preg_quote($regex, '/') . ':(.*)$/mi', $content, $match) && $match[1]) {
+                $headers[$field] = trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $match[1]));
             } else {
-                $headers[ $field ] = '';
+                $headers[$field] = '';
             }
         }
 

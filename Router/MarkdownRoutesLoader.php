@@ -38,7 +38,7 @@ class MarkdownRoutesLoader implements LoaderInterface
     /**
      * @param string $routePrefix
      */
-    public function __construct($routePrefix='')
+    public function __construct($routePrefix = '')
     {
         $this->routePrefix = $routePrefix;
     }

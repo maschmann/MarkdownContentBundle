@@ -110,7 +110,8 @@ class ContentProvider
     /**
      * set loader type for content
      *
-     * @param string$loader
+     * @param string $loader
+     * @return $this
      */
     public function setLoader($loader)
     {
@@ -123,6 +124,7 @@ class ContentProvider
      * set name of parser to use
      *
      * @param string $parser
+     * @return $this
      */
     public function setParser($parser)
     {

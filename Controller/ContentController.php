@@ -21,6 +21,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class ContentController extends Controller
 {
+    /**
+     * display content in symfony context
+     *
+     * @param $page
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction($page)
     {
         $content = $this->get('asm_markdown_content.content_provider')

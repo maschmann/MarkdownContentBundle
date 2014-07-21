@@ -22,6 +22,9 @@ use Symfony\Component\Yaml\Yaml;
  */
 class FrontMatterContentHook implements HookInterface
 {
+    /**
+     * @var array
+     */
     private $defaults= array(
         'title'       => '',
         'description' => '',
@@ -92,5 +95,4 @@ class FrontMatterContentHook implements HookInterface
     {
         return 'pre';
     }
-
 }

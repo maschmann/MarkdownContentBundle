@@ -36,5 +36,4 @@ interface ContentManagerInterface
      * @return mixed
      */
     public function getLoader($alias);
-
 }

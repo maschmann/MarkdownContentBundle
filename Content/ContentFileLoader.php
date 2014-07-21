@@ -54,6 +54,7 @@ class ContentFileLoader implements ContentLoaderInterface
      */
     private function getContent($uri)
     {
+        $content = '';
         $searchStructure = $this->prepare($uri);
         /** @var \Symfony\Component\Finder\Finder $finder */
         $finder = new Finder();

@@ -36,5 +36,4 @@ interface ParserManagerInterface
      * @return mixed
      */
     public function getParser($alias);
-
 }

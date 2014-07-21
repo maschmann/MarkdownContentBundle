@@ -54,5 +54,4 @@ class ContentManager implements ContentManagerInterface
             return false;
         }
     }
-
 }

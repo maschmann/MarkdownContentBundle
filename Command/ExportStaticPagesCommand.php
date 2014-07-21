@@ -41,11 +41,16 @@ class ExportStaticPagesCommand extends ContainerAwareCommand
             ->setName('asm:markdown:export')
             ->setDescription('Export all your markdown as html content into a specific directory')
             ->addArgument('export', InputArgument::REQUIRED, 'Where do you want to export to?')
-            ->addOption('import', 'i', InputArgument::OPTIONAL, 'Where are your markdown files? Defaults to config dir');
+            ->addOption(
+                'import',
+                'i',
+                InputArgument::OPTIONAL,
+                'Where are your markdown files? Defaults to config dir'
+            );
     }
 
     /**
-     * @param InputInterface  $input
+     * @param InputInterface $input
      * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -85,7 +90,7 @@ class ExportStaticPagesCommand extends ContainerAwareCommand
                 array(
                     'data'     => $content['data'],
                     'content'  => $content['content'],
-                    'language' => 'en',//$this->get('request')->getLocale(),
+                    'language' => 'en', //$this->get('request')->getLocale(),
                 )
             );
 

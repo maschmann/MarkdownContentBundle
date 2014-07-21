@@ -25,6 +25,12 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class ParserManagerCompilerPass implements CompilerPassInterface
 {
+    /**
+     * process compoler pass
+     *
+     * @param ContainerBuilder $container
+     * @throws \ErrorException
+     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition('asm_markdown_content.parser_manager')) {

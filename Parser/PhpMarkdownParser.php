@@ -108,5 +108,4 @@ class PhpMarkdownParser extends ParserAbstract implements ParserInterface
 
         return $this;
     }
-
 }

@@ -18,5 +18,4 @@ interface ContentLoaderInterface
      * @return mixed
      */
     public function load($uri);
-
 }

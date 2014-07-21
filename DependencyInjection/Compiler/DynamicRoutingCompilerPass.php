@@ -27,6 +27,8 @@ class DynamicRoutingCompilerPass implements CompilerPassInterface
 {
 
     /**
+     * process compoler pass
+     *
      * @param ContainerBuilder $container
      */
     public function process(ContainerBuilder $container)

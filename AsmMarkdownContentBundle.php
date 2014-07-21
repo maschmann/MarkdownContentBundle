@@ -44,5 +44,4 @@ class AsmMarkdownContentBundle extends Bundle
         $container->addCompilerPass(new ContentManagerCompilerPass());
         $container->addCompilerPass(new HookManagerCompilerPass());
     }
-
 }

@@ -23,8 +23,14 @@ use Symfony\Component\DependencyInjection\Reference;
  * @uses Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface
  * @uses Symfony\Component\DependencyInjection\Reference
  */
-class ContentManagerCompilerPass  implements CompilerPassInterface
+class ContentManagerCompilerPass implements CompilerPassInterface
 {
+    /**
+     * process compoler pass
+     *
+     * @param ContainerBuilder $container
+     * @throws \ErrorException
+     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition('asm_markdown_content.content_manager')) {
