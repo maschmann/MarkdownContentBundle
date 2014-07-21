@@ -10,11 +10,8 @@
 
 namespace Asm\MarkdownContentBundle\Parser;
 
-use Asm\MarkdownContentBundle\Parser\ParserInterface;
-use Asm\MarkdownContentBundle\Parser\ParserAbstract;
 use \Michelf\Markdown;
 use \Michelf\MarkdownExtra;
-
 
 /**
  * Class PhpMarkdownParser
@@ -34,12 +31,10 @@ class PhpMarkdownParser extends ParserAbstract implements ParserInterface
      */
     private $parser;
 
-
     /**
      * @var array
      */
     private $options;
-
 
     /**
      * allowed options keys
@@ -51,7 +46,7 @@ class PhpMarkdownParser extends ParserAbstract implements ParserInterface
     /**
      * will be called by constructor
      *
-     * @param array $options
+     * @param  array $options
      * @return mixed
      */
     public function init($options)
@@ -87,7 +82,7 @@ class PhpMarkdownParser extends ParserAbstract implements ParserInterface
     /**
      * parse markdown and return html content
      *
-     * @param string $text
+     * @param  string $text
      * @return mixed
      */
     public function parseText($text)
@@ -98,7 +93,7 @@ class PhpMarkdownParser extends ParserAbstract implements ParserInterface
     /**
      * set multiple options supportet by the individual parsers
      *
-     * @param array $options
+     * @param  array $options
      * @return $this
      */
     public function setOptions($options)

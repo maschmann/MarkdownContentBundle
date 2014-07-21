@@ -11,14 +11,12 @@ namespace Asm\MarkdownContentBundle\Content;
 class ContentManager implements ContentManagerInterface
 {
 
-
     /**
      * array of managed loader instances
      *
      * @var array
      */
     private $loaders;
-
 
     /**
      * default constructor
@@ -31,17 +29,16 @@ class ContentManager implements ContentManagerInterface
     /**
      * set loader
      *
-     * @param ContentLoaderInterface $loader
-     * @param string $alias
+     * @param  ContentLoaderInterface $loader
+     * @param  string                 $alias
      * @return mixed
      */
-    public function addLoader( ContentLoaderInterface $loader, $alias )
+    public function addLoader(ContentLoaderInterface $loader, $alias)
     {
         $this->loaders[$alias] = $loader;
 
         return $this;
     }
-
 
     /**
      * get instance of prepared loaders
@@ -49,7 +46,7 @@ class ContentManager implements ContentManagerInterface
      * @param $alias
      * @return mixed
      */
-    public function getLoader( $alias )
+    public function getLoader($alias)
     {
         if (isset($this->loaders[$alias])) {
             return $this->loaders[$alias];

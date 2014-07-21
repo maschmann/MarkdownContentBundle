@@ -28,11 +28,10 @@ interface ParserInterface
 ´     */
     public function init($options);
 
-
     /**
      * parse markdown and return html content
      *
-     * @param string $text
+     * @param  string $text
      * @return mixed
      */
     public function parseText($text);

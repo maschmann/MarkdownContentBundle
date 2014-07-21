@@ -10,8 +10,6 @@
 
 namespace Asm\MarkdownContentBundle\Content;
 
-use Asm\MarkdownContentBundle\Content\ContentLoaderInterface;
-
 /**
  * Interface ContentManagerInterface
  *
@@ -25,8 +23,8 @@ interface ContentManagerInterface
     /**
      * set parser
      *
-     * @param ContentLoaderInterface $loader
-     * @param string $alias
+     * @param  ContentLoaderInterface $loader
+     * @param  string                 $alias
      * @return mixed
      */
     public function addLoader(ContentLoaderInterface $loader, $alias);

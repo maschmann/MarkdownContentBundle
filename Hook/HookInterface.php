@@ -28,7 +28,7 @@ interface HookInterface
     /**
      * main method of hook, changes content
      *
-     * @param string $content
+     * @param  string $content
      * @return string
      */
     public function workContent($content);

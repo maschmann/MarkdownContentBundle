@@ -46,8 +46,8 @@ class MarkdownRoutesLoader implements LoaderInterface
     /**
      * Loads a resource.
      *
-     * @param mixed $resource The resource
-     * @param string $type The resource type
+     * @param  mixed             $resource The resource
+     * @param  string            $type     The resource type
      * @throws \RuntimeException Loader is added twice
      * @return RouteCollection
      */

@@ -10,8 +10,6 @@
 
 namespace Asm\MarkdownContentBundle\Hook;
 
-use Asm\MarkdownContentBundle\Hook\HookManagerInterface;
-
 /**
  * Class HookLoader
  *
@@ -37,8 +35,8 @@ class HookManager implements HookManagerInterface
     }
 
     /**
-     * @param HookInterface $hook
-     * @param string $alias
+     * @param  HookInterface $hook
+     * @param  string        $alias
      * @return mixed|void
      */
     public function addHook(HookInterface $hook, $alias)
@@ -49,7 +47,7 @@ class HookManager implements HookManagerInterface
     /**
      * get instance of configured hook
      *
-     * @param string $alias
+     * @param  string $alias
      * @return mixed
      */
     public function getHook($alias)

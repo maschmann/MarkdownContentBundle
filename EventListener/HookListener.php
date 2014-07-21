@@ -40,7 +40,7 @@ class HookListener
     }
 
     /**
-     * @param PreParseHookEvent $event
+     * @param  PreParseHookEvent $event
      * @return PreParseHookEvent
      */
     public function onPreParseHook(PreParseHookEvent $event)
@@ -56,7 +56,7 @@ class HookListener
     }
 
     /**
-     * @param PostParseHookEvent $event
+     * @param  PostParseHookEvent $event
      * @return PostParseHookEvent
      */
     public function onPostParseHook(PostParseHookEvent $event)
@@ -71,18 +71,16 @@ class HookListener
         return $event;
     }
 
-
     /**
      * iterate hooks, call worker
      *
-     * @param array $hooks
-     * @param array $content
+     * @param  array $hooks
+     * @param  array $content
      * @return array
      */
     private function runHooks($hooks, array $content)
     {
-        foreach ($hooks as $hook)
-        {
+        foreach ($hooks as $hook) {
             $content = $hook->workContent($content);
         }
 

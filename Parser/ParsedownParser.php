@@ -10,8 +10,6 @@
 
 namespace Asm\MarkdownContentBundle\Parser;
 
-use Asm\MarkdownContentBundle\Parser\ParserInterface;
-use Asm\MarkdownContentBundle\Parser\ParserAbstract;
 use \Parsedown;
 
 /**
@@ -31,7 +29,7 @@ class ParsedownParser extends ParserAbstract implements ParserInterface
     /**
      * will be called by constructor
      *
-     * @param array $options
+     * @param  array $options
      * @return mixed
      */
     public function init($options)
@@ -44,7 +42,7 @@ class ParsedownParser extends ParserAbstract implements ParserInterface
     /**
      * parse markdown and return html content
      *
-     * @param string $text
+     * @param  string $text
      * @return mixed
      */
     public function parseText($text)

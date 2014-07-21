@@ -10,7 +10,6 @@
 /** @namespace Asm\MarkdownContentBundle\Hook */
 namespace Asm\MarkdownContentBundle\Hook;
 
-use Asm\MarkdownContentBundle\Hook\HookInterface;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -37,7 +36,7 @@ class FrontMatterContentHook implements HookInterface
     /**
      * main method of hook, changes content
      *
-     * @param array $content
+     * @param  array $content
      * @return array
      */
     public function workContent($content)
@@ -45,9 +44,8 @@ class FrontMatterContentHook implements HookInterface
         return $this->extractFrontMatter($content);
     }
 
-
     /**
-     * @param array $content
+     * @param  array $content
      * @return array
      */
     private function extractFrontMatter(array $content)

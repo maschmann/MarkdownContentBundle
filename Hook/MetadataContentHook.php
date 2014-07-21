@@ -10,8 +10,6 @@
 /** @namespace Asm\MarkdownContentBundle\Hook */
 namespace Asm\MarkdownContentBundle\Hook;
 
-use Asm\MarkdownContentBundle\Hook\HookInterface;
-
 /**
  * Class MetadataContentHook
  *
@@ -24,7 +22,7 @@ class MetadataContentHook implements HookInterface
     /**
      * main method of hook, changes content
      *
-     * @param array $content
+     * @param  array $content
      * @return array
      */
     public function workContent($content)
@@ -49,11 +47,10 @@ class MetadataContentHook implements HookInterface
         return 'pre';
     }
 
-
     /**
      * extract header block from content
      *
-     * @param string $content
+     * @param  string $content
      * @return array
      */
     private function extractHeaders($content)

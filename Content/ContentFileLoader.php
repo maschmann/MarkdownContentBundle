@@ -37,9 +37,8 @@ class ContentFileLoader implements ContentLoaderInterface
         $this->directory = $rootDir . '/../' . $directory;
     }
 
-
     /**
-     * @param string $uri
+     * @param  string     $uri
      * @return mixed|void
      */
     public function load($uri)
@@ -47,11 +46,10 @@ class ContentFileLoader implements ContentLoaderInterface
         return $this->getContent($uri);
     }
 
-
     /**
      * extract contents from file
      *
-     * @param string $uri
+     * @param  string $uri
      * @return string
      */
     private function getContent($uri)
@@ -69,11 +67,10 @@ class ContentFileLoader implements ContentLoaderInterface
         return $content;
     }
 
-
     /**
      * analyze request uri and prepare search params
      *
-     * @param string $uri
+     * @param  string $uri
      * @return array
      */
     private function prepare($uri)

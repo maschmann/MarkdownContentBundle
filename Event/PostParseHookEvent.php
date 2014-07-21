@@ -10,8 +10,6 @@
 
 namespace Asm\MarkdownContentBundle\Event;
 
-use Asm\MarkdownContentBundle\Event\ParseHookEventAbstract;
-
 /**
  * Class PostParseHookEvent
  *

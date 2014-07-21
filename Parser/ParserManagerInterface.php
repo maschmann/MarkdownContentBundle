@@ -10,8 +10,6 @@
 
 namespace Asm\MarkdownContentBundle\Parser;
 
-use Asm\MarkdownContentBundle\Parser\ParserInterface;
-
 /**
  * Interface ParserManagerInterface
  *
@@ -25,8 +23,8 @@ interface ParserManagerInterface
     /**
      * set parser
      *
-     * @param ParserInterface $parser
-     * @param string $alias
+     * @param  ParserInterface $parser
+     * @param  string          $alias
      * @return mixed
      */
     public function addParser(ParserInterface $parser, $alias);

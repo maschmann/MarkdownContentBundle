@@ -14,7 +14,7 @@ interface ContentLoaderInterface
     /**
      * load from resources
      *
-     * @param string $uri
+     * @param  string $uri
      * @return mixed
      */
     public function load($uri);

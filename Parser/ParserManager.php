@@ -10,8 +10,6 @@
 
 namespace Asm\MarkdownContentBundle\Parser;
 
-use Asm\MarkdownContentBundle\Parser\ParserInterface;
-
 /**
  * Class ParserManager
  *
@@ -28,7 +26,6 @@ class ParserManager implements ParserManagerInterface
      */
     private $parsers;
 
-
     /**
      * default constructor
      */
@@ -38,8 +35,8 @@ class ParserManager implements ParserManagerInterface
     }
 
     /**
-     * @param ParserInterface $parser
-     * @param string $alias
+     * @param  ParserInterface $parser
+     * @param  string          $alias
      * @return mixed|void
      */
     public function addParser(ParserInterface $parser, $alias)
@@ -50,7 +47,7 @@ class ParserManager implements ParserManagerInterface
     /**
      * get instance of configured parser
      *
-     * @param string $alias
+     * @param  string $alias
      * @return mixed
      */
     public function getParser($alias)

@@ -17,7 +17,7 @@ namespace Asm\MarkdownContentBundle\Content;
 class ContentStaticFileLoader implements ContentLoaderInterface
 {
     /**
-     * @param string $uri
+     * @param  string     $uri
      * @return mixed|void
      */
     public function load($uri)
