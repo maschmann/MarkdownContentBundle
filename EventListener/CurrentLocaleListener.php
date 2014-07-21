@@ -12,15 +12,31 @@ namespace Asm\MarkdownContentBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
+/**
+ * Class CurrentLocaleListener
+ *
+ * @package Asm\MarkdownContentBundle\EventListener
+ * @author marc aschmann <marc.aschmann@internetstores.de>
+ * @uses Symfony\Component\HttpKernel\Event\GetResponseEvent
+ */
 class CurrentLocaleListener
 {
+    /**
+     * @var EntityLocaleSetter
+     */
     private $entityLocaleSetter;
 
+    /**
+     * @param EntityLocaleSetter $entityLocaleSetter
+     */
     public function __construct(EntityLocaleSetter $entityLocaleSetter)
     {
         $this->entityLocaleSetter = $entityLocaleSetter;
     }
 
+    /**
+     * @param GetResponseEvent $event
+     */
     public function onKernelRequest(GetResponseEvent $event)
     {
         $this->entityLocaleSetter->setRequest($event->getRequest());
