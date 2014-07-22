@@ -1,6 +1,5 @@
 # composer directories
 vendor/*
-composer.json
 
 # Configuration and IDE files
 .idea
