@@ -1,8 +1,9 @@
 MarkdownContentBundle
 ========
 Basic idea behind the project was to be able to easily provide, provision and version content without a database backend. Also quite tempting: The markdown syntax.
-[![phpci build status](http://phpci.br0ken.de/build-status/image/2)]
 [![Build Status](https://travis-ci.org/maschmann/MarkdownContentBundle.png?branch=master)](https://travis-ci.org/maschmann/MarkdownContentBundle) [![Latest Stable Version](https://poser.pugx.org/asm/markdown-content-bundle/v/stable.png)](https://packagist.org/packages/asm/markdown-content-bundle) [![Total Downloads](https://poser.pugx.org/asm/markdown-content-bundle/downloads.png)](https://packagist.org/packages/asm/markdown-content-bundle)
+
+[![phpci build status](http://phpci.br0ken.de/build-status/image/2)](http://phpci.br0ken.de)
 
 ## What does it do?
 You can configure following things:
