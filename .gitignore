@@ -1,5 +1,6 @@
 # composer directories
 vendor/*
+composer.lock
 
 # Configuration and IDE files
 .idea
