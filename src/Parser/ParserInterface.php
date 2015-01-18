@@ -22,16 +22,14 @@ namespace Asm\MarkdownContentBundle\Parser;
 interface ParserInterface
 {
     /**
-     * will be called by abstract constructor
-     *
      * @param array $options
-´     */
-    public function init($options);
+     */
+    public function __construct(array $options = array());
 
     /**
      * parse markdown and return html content
      *
-     * @param  string $text
+     * @param string $text
      * @return mixed
      */
     public function parseText($text);

@@ -20,7 +20,7 @@ use Symfony\Component\Yaml\Yaml;
  * @uses Asm\MarkdownContentBundle\Hook\HookInterface
  * @uses Symfony\Component\Yaml\Yaml
  */
-class FrontMatterContentHook implements HookInterface
+final class FrontMatterContentHook implements HookInterface
 {
     /**
      * @var array

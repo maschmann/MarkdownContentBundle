@@ -13,7 +13,6 @@ namespace Asm\MarkdownContentBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
@@ -22,12 +21,6 @@ use Symfony\Component\Finder\Finder;
  *
  * @package Asm\MarkdownContentBundle\Command
  * @author marc aschmann <maschmann@gmail.com>
- * @uses Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand
- * @uses Symfony\Component\Console\Input\InputArgument
- * @uses Symfony\Component\Console\Input\InputInterface
- * @uses Symfony\Component\Console\Input\InputOption
- * @uses Symfony\Component\Console\Output\OutputInterface
- * @uses Symfony\Component\Finder\Finder
  */
 class ExportStaticPagesCommand extends ContainerAwareCommand
 {

@@ -19,7 +19,7 @@ use Symfony\Component\Finder\Finder;
  * @author marc aschmann <maschmann@gmail.com>
  * @uses Symfony\Component\Finder
  */
-class ContentFileLoader implements ContentLoaderInterface
+final class ContentFileLoader implements ContentLoaderInterface
 {
     /**
      * @var string path to search in

@@ -14,7 +14,7 @@ namespace Asm\MarkdownContentBundle\Content;
  * @package Asm\MarkdownContentBundle\Content
  * @author marc aschmann <maschmann@gmail.com>
  */
-class ContentStaticFileLoader implements ContentLoaderInterface
+final class ContentStaticFileLoader implements ContentLoaderInterface
 {
     /**
      * @param  string     $uri

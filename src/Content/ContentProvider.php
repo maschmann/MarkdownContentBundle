@@ -10,23 +10,19 @@
 /** namespace Asm\MarkdownContentBundle\Content */
 namespace Asm\MarkdownContentBundle\Content;
 
-use Asm\MarkdownContentBundle\Hook\HookRunner;
+
 use Asm\MarkdownContentBundle\Parser\ParserManagerInterface;
+use Asm\MarkdownContentBundle\Content\ContentManagerInterface;
 use Asm\MarkdownContentBundle\Event\PreParseHookEvent;
 use Asm\MarkdownContentBundle\Event\PostParseHookEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+
 
 /**
  * Class ContentManager
  *
  * @package Asm\MarkdownContentBundle\Content
  * @author marc aschmann <maschmann@gmail.com>
- * @uses Asm\MarkdownContentBundle\Hook\HookRunner
- * @uses Asm\MarkdownContentBundle\Parser\ParserManagerInterface
- * @uses Asm\MarkdownContentBundle\Content\ContentManagerInterface
- * @uses Asm\MarkdownContentBundle\Event\PreParseHookEvent
- * @uses Asm\MarkdownContentBundle\Event\PostParseHookEvent
- * @uses Symfony\Component\EventDispatcher\EventDispatcherInterface
  */
 class ContentProvider
 {
@@ -56,6 +52,7 @@ class ContentProvider
      */
     private $parser;
 
+
     /**
      * default constructor
      *
@@ -73,8 +70,9 @@ class ContentProvider
         $this->eventDispatcher = $eventDispatcher;
     }
 
+
     /**
-     * @param  string $uri
+     * @param string $uri
      * @return array
      */
     public function getContent($uri)
@@ -136,7 +134,7 @@ class ContentProvider
     /**
      * load content from provider
      *
-     * @param  string $uri
+     * @param string $uri
      * @return array
      */
     private function loadContent($uri)

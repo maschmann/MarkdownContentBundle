@@ -17,7 +17,7 @@ namespace Asm\MarkdownContentBundle\Hook;
  * @author marc aschmann <maschmann@gmail.com>
  * uses Asm\MarkdownContentBundle\Hook\HookInterface
  */
-class MetadataContentHook implements HookInterface
+final class MetadataContentHook implements HookInterface
 {
     /**
      * main method of hook, changes content

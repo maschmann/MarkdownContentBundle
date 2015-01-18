@@ -1,7 +1,3 @@
 # composer directories
 vendor/*
 composer.lock
-
-# Configuration and IDE files
-.idea
-atlassian-ide-plugin.xml

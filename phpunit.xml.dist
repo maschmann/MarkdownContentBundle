@@ -22,11 +22,11 @@
 
     <filter>
         <whitelist>
-            <directory>./</directory>
+            <directory>./src</directory>
             <exclude>
-                <directory>./Resources</directory>
-                <directory>./Tests</directory>
-                <directory>./TestCase</directory>
+                <directory>./src/Resources</directory>
+                <directory>./src/Tests</directory>
+                <directory>./src/TestCase</directory>
                 <directory>./vendor</directory>
             </exclude>
         </whitelist>

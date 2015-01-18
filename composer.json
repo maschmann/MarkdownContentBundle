@@ -1,7 +1,7 @@
 {
     "name": "asm/markdown-content-bundle",
     "description": "Symfony2 bundle for static markdown-file content management",
-    "keywords": ["symfony markdown", "symfony markdown cms"],
+    "keywords": ["symfony markdown", "symfony markdown cms", "markdown content render"],
     "homepage": "https://github.com/maschmann/MarkdownContentBundle",
     "type": "symfony-bundle",
     "license": "MIT",
@@ -29,9 +29,8 @@
         "symfony/security-bundle": "2.*"
     },
     "autoload": {
-        "psr-0": {
-            "Asm\\MarkdownContentBundle": ""
+        "psr-4": {
+            "Asm\\MarkdownContentBundle\\": "src/"
         }
-    },
-    "target-dir": "Asm/MarkdownContentBundle"
+    }
 }
