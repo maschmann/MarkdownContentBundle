@@ -3,13 +3,13 @@ language: php
 php:
   - 5.4
   - 5.5
+  - 5.6
+  - 7.0
 
 env:
-  - SYMFONY_VERSION="2.3.x"
-  - SYMFONY_VERSION="2.4.x"
-  - SYMFONY_VERSION="2.5.x"
   - SYMFONY_VERSION="2.6.x"
-  - SYMFONY_VERSION="2.7.x@dev"
+  - SYMFONY_VERSION="2.7.x"
+  - SYMFONY_VERSION="2.8.x"
 
 before_script:
   - composer require symfony/framework-bundle:${SYMFONY_VERSION} --dev --no-update
